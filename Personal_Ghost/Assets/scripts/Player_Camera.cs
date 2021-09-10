@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Camera_Follow : MonoBehaviour
+public class Player_Camera : MonoBehaviour
 {
-    public GameObject tank;
-    private Vector3 offset = new Vector3(0,5,-12);
+    public GameObject capsule;
+    private Vector3 offset = new Vector3(1,2,3);
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +14,7 @@ public class Camera_Follow : MonoBehaviour
     void Update()
     {
         //set camera position to the player position
-        transform.position = tank.transform.position + offset; 
-        //transform.rotation = tank.transform.rotation; 
+        transform.position = capsule.transform.position + offset; 
+        transform.rotation = capsule.transform.rotation; 
     }
 }

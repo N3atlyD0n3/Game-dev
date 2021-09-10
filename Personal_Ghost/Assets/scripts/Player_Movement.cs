@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Player_Control : MonoBehaviour
+public class Player_Movement : MonoBehaviour
 {       
     private float speed = 25.0f; 
     private float turn_speed = 25.0f;
