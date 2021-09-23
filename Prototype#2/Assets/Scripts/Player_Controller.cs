@@ -12,10 +12,12 @@ public class Player_Controller : MonoBehaviour
     private float vInput;
     //set max y and x range player can move
     public float xRange = 10.025f;
-    public float yRange = 4.49f; 
+    public float yRange = 4.49f;
+    //Get projectile
+    public GameObject projectile;
+    private Vector3 offset = new Vector3(0,1,0);
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         //Sets variable Hinput and vInput to unitys controlls
         hInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
@@ -25,22 +27,22 @@ public class Player_Controller : MonoBehaviour
         transform.Translate(Vector3.up * speed * Time.deltaTime * vInput);
         //if player is past max range for x or y it stops the player
             // X
-        if(transform.position.x > xRange)
-        {
+        if(transform.position.x > xRange){
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
         }
-        if(transform.position.x < -xRange)
-        {
+        if(transform.position.x < -xRange){
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
             // Y
-        if(transform.position.y > yRange)
-        {
+        if(transform.position.y > yRange){
             transform.position = new Vector3(transform.position.x, -yRange, transform.position.z);
         }
-        if(transform.position.y < -yRange)
-        {
+        if(transform.position.y < -yRange){
             transform.position = new Vector3(transform.position.x, yRange, transform.position.z);
+        }
+        // Check for button press
+        if(Input.GetKeyDown(KeyCode.Space)){
+            Instantiate(projectile, transform.position + offset, projectile.transform.rotation);
         }
 
     }
