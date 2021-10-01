@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof (GravityBody))]
+//[RequireComponent (typeof (GravityBody))]
 public class PlayerController : MonoBehaviour {
 	// Set mouse sensitivity
 	public float mouseSensitivityX = 1;

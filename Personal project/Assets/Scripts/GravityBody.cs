@@ -8,12 +8,18 @@ public class GravityBody : MonoBehaviour
 
     void Awake() {
         planet = GameObject.FindGameObjectWithTag("Planet").GetComponent<GravityAttract>();
-        rigidbody = GetComponent<Rigidbody> ();
+        rigidbody = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
 
         rigidbody.useGravity = false;
         rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
-    void FixedUpdate(){
-        planet.Attract(rigidbody);
+    void OnTriggerEnter(Collider other){
+        if(other.CompareTag("Player")){
+                        planet.Attract(rigidbody);
+        }
     }
+    //void FixedUpdate(){
+      //  OnTriggerEnter();
+        //}
+    //}
 }
