@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1938548059771883322, guid: f9529dd38d0d8414ea7b05ec5ff7cf31, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6599947704140330931, guid: f9529dd38d0d8414ea7b05ec5ff7cf31, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -202,7 +206,9 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 483574799}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6846210051871535503, guid: f9529dd38d0d8414ea7b05ec5ff7cf31, type: 3}
+    - {fileID: 8233572828841099217, guid: f9529dd38d0d8414ea7b05ec5ff7cf31, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f9529dd38d0d8414ea7b05ec5ff7cf31, type: 3}
 --- !u!1 &483574799
 GameObject:
@@ -218,6 +224,7 @@ GameObject:
   - component: {fileID: 483574803}
   - component: {fileID: 483574802}
   - component: {fileID: 483574800}
+  - component: {fileID: 483574801}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -244,6 +251,18 @@ MonoBehaviour:
   groundedMask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &483574801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483574799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f039c12431a29d44090b426c2422a25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &483574802
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -331,7 +350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483574799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.36, y: 58.3, z: -13.24}
+  m_LocalPosition: {x: 17.36, y: 29.7, z: -61.1}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 1721665914}
@@ -482,7 +501,8 @@ PrefabInstance:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8233572828841099217, guid: f9529dd38d0d8414ea7b05ec5ff7cf31, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f9529dd38d0d8414ea7b05ec5ff7cf31, type: 3}
 --- !u!1 &1721665913
 GameObject:

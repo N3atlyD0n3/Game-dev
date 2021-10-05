@@ -69,6 +69,12 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate() {
 		// Apply movement to rigidbody
 		Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
-		GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + localMove);
+		rigidbody.MovePosition(rigidbody.position + localMove);
+		// use raycast for gravity
+		Ray gravray = new Ray(transform.position, -transform.up);
+		RaycastHit hit;
+		if (Pysics.Raycast(gravray, out hit, 1+ .1f, groundedMask)){
+			
+		}
 	}
 }
