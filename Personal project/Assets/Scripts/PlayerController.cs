@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour {
     // Set jump to power to 220
 	public float jumpForce = 220;
     //
+	public float gravityac = -9.8f;
+	//
+	
+	//
 	public LayerMask groundedMask;
 	// Make grounded Var
 	bool grounded;
@@ -23,7 +27,7 @@ public class PlayerController : MonoBehaviour {
     // Set Camera
 	Transform cameraTransform;
     // Set rigidbody
-	Rigidbody rigidbody;
+	Rigidbody playerrigidbody;
     // Awake is simalar to start
 	void Awake() {
         //Set Cursor to disappear when started
@@ -32,7 +36,10 @@ public class PlayerController : MonoBehaviour {
         // Set Camera to whatever camera is there
 		cameraTransform = Camera.main.transform;
         // Set rigidbody = to rigidbody (more modern way)
-		rigidbody = GetComponent<Rigidbody> ();
+		playerrigidbody = GetComponent<Rigidbody> ();
+		//get planet rigidbody
+		planet = CompareTag("Planet");
+		planetRigid = planet.GetComponent<Rigidbody>();
 	}
 	// Start the updating sequence
 	void Update() {
@@ -52,7 +59,7 @@ public class PlayerController : MonoBehaviour {
 		// Jump
 		if (Input.GetButtonDown("Jump")) {
 			if (grounded) {
-				GetComponent<Rigidbody>().AddForce(transform.up * jumpForce);
+				playerrigidbody.AddForce(transform.up * jumpForce);
 			}
 		}
 		// Check if your on the ground
@@ -69,12 +76,19 @@ public class PlayerController : MonoBehaviour {
 	void FixedUpdate() {
 		// Apply movement to rigidbody
 		Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
-		rigidbody.MovePosition(rigidbody.position + localMove);
+		playerrigidbody.MovePosition(playerrigidbody.position + localMove);
 		// use raycast for gravity
 		Ray gravray = new Ray(transform.position, -transform.up);
 		RaycastHit hit;
-		if (Pysics.Raycast(gravray, out hit, 1+ .1f, groundedMask)){
-			
-		}
+        float planetDist = Vector3.Distance(playerrigidbody.transform.position, transform.position);
+        if (planetDist < 10){
+            playerrigidbody.useGravity = false;
+            //rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+            //Vector3 gravityUp = (rigidbody.position - transform.position).normalized;
+            //Vector3 localUp = rigidbody.transform.up;
+            //playerrigidbody.rotation = Quaternion.FromToRotation(localUp, gravityUp) * playerrigidbody.rotation;
+            playerrigidbody.AddForce((planetRigid.position - transform.position).normalized * gravityac);
+	// rigidbody.AddForce((planet.position - transform.position).normalized * acceleration);
+        }
 	}
 }

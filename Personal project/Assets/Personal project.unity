@@ -248,6 +248,7 @@ MonoBehaviour:
   mouseSensitivityY: 1
   walkSpeed: 6
   jumpForce: 220
+  gravity: -9.8
   groundedMask:
     serializedVersion: 2
     m_Bits: 8
@@ -263,6 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f039c12431a29d44090b426c2422a25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  planet: {fileID: 0}
+  rigidbody: {fileID: 0}
 --- !u!54 &483574802
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -455,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6599947704140330931, guid: f9529dd38d0d8414ea7b05ec5ff7cf31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.5
+      value: -106.2
       objectReference: {fileID: 0}
     - target: {fileID: 6599947704140330931, guid: f9529dd38d0d8414ea7b05ec5ff7cf31, type: 3}
       propertyPath: m_LocalPosition.y
