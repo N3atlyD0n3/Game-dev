@@ -5,14 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 6;
-
+    private float rotX;
+    public float jumpforce;
     public float mouseSens = 5;
 
     public float maxLookX = -45;
     public float minLookX = 45;
 
-    public float maxLookY = -45;
-    public float minLookY = 45;
+    public float maxLookY = 0;
+    public float minLookY = 0;
+
 
     private Camera cam;
     private Rigidbody rb;
@@ -24,29 +26,37 @@ public class PlayerController : MonoBehaviour
 
     }
     // Start is called before the first frame update
-    void Start(){
-        
-    }
-    // Update is called once per frame
     void Update(){
         Move();
+        CameraLook();
+        if(Input.GetButton("Jump"))
+            Jump();
     }
     void Move(){
         float X  = Input.GetAxis("Horizontal") * moveSpeed;
         float Z = Input.GetAxis("Vertical") * moveSpeed;
-        rb.velocity = new Vector3(X,rb.velocity.y,Z);
+        //get current direction / face direciton of the camera
+        Vector3 dir = transform.right * X + transform.forward * Z;
+        //Jump direction
+        dir.y = rb.velocity.y;
+        //Move in the direction of the camera
+        rb.velocity = dir;
 
+    }
+    void Jump(){
+        Ray ray = new Ray(transform.position, Vector3.down);
+        if(Physics.Raycast(ray,1.1f)){
+            rb.AddForce(Vector3.up * jumpforce,ForceMode.Impulse);
+        }
     }
     void CameraLook(){
         float Y = Input.GetAxis("Mouse X") * mouseSens;
 
-        rotX = Input.GetAxis("Mouse Y") * mouseSens;
+        rotX += Input.GetAxis("Mouse Y") * mouseSens;
         //Clamp Camera
         rotX = Mathf.Clamp(rotX, minLookX, maxLookX);
-
-        
-        //Apply Clamp
+        //Apply
         cam.transform.localRotation = Quaternion.Euler(-rotX,0,0);
-        transfor.eulerAngles += Vector3.Up + Y;
+        transform.eulerAngles += Vector3.up * Y;
     }
 }

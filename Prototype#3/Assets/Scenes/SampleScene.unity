@@ -428,9 +428,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
+  jumpforce: 4
   mouseSens: 5
-  maxLookX: 0
-  minLookX: 0
+  maxLookX: 45
+  minLookX: -45
   maxLookY: 0
   minLookY: 0
 --- !u!136 &1038488311

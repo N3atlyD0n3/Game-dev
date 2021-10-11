@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections;
-
-//[RequireComponent (typeof (GravityBody))]
 public class PlayerController : MonoBehaviour {
 	// Set mouse sensitivity
 	public float mouseSensitivityX = 1;
@@ -12,8 +10,8 @@ public class PlayerController : MonoBehaviour {
 	public float jumpForce = 220;
     //
 	public float gravityac = -9.8f;
-	//
 	
+	public GameObject planet;
 	//
 	public LayerMask groundedMask;
 	// Make grounded Var
@@ -78,17 +76,19 @@ public class PlayerController : MonoBehaviour {
 		Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
 		playerrigidbody.MovePosition(playerrigidbody.position + localMove);
 		// use raycast for gravity
-		Ray gravray = new Ray(transform.position, -transform.up);
-		RaycastHit hit;
-        float planetDist = Vector3.Distance(playerrigidbody.transform.position, transform.position);
-        if (planetDist < 10){
-            playerrigidbody.useGravity = false;
-            //rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-            //Vector3 gravityUp = (rigidbody.position - transform.position).normalized;
-            //Vector3 localUp = rigidbody.transform.up;
-            //playerrigidbody.rotation = Quaternion.FromToRotation(localUp, gravityUp) * playerrigidbody.rotation;
-            playerrigidbody.AddForce((planetRigid.position - transform.position).normalized * gravityac);
-	// rigidbody.AddForce((planet.position - transform.position).normalized * acceleration);
+		Ray gravray = new Ray(transform.position, Vector3.forward);
+        if (Physics.Raycast(gravray,10.1f)){
+			Gravity();
+            
         }
+	}
+	void Gravity(){
+		playerrigidbody.useGravity = false;
+        //playerrigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        //Vector3 gravityUp = (playerrigidbody.position - transform.position).normalized;
+        //Vector3 localUp = playerrigidbody.transform.up;
+        //playerrigidbody.rotation = Quaternion.FromToRotation(localUp, gravityUp) * playerrigidbody.rotation;
+        //playerrigidbody.AddForce((planetRigid.position - transform.position).normalized * gravityac);
+		// rigidbody.AddForce((planet.position - transform.position).normalized * acceleration);
 	}
 }
