@@ -248,9 +248,7 @@ MonoBehaviour:
   walkSpeed: 6
   jumpForce: 220
   gravityac: -9.8
-  planetmask:
-    serializedVersion: 2
-    m_Bits: 0
+  planet: {fileID: 6599947704140330932, guid: f9529dd38d0d8414ea7b05ec5ff7cf31, type: 3}
   groundedMask:
     serializedVersion: 2
     m_Bits: 8

@@ -20,12 +20,15 @@ public class PlayerController : MonoBehaviour {
 	Vector3 moveAmount;
     // Make movement smooth
 	Vector3 smoothMoveVelocity;
+	//Make ground normal with vector 3
+	Vector3 groundnormal;
     // Make Vertivle look Var
 	float verticalLookRotation;
     // Set Camera
 	Transform cameraTransform;
     // Set rigidbody
 	Rigidbody playerrigidbody;
+	Rigidbody planetRigid;
     // Awake is simalar to start
 	void Awake() {
         //Set Cursor to disappear when started
@@ -36,7 +39,7 @@ public class PlayerController : MonoBehaviour {
         // Set rigidbody = to rigidbody (more modern way)
 		playerrigidbody = GetComponent<Rigidbody> ();
 		//get planet rigidbody
-		planet = CompareTag("Planet");
+		planet = GameObject.FindWithTag("Planet");
 		planetRigid = planet.GetComponent<Rigidbody>();
 	}
 	// Start the updating sequence
@@ -46,7 +49,6 @@ public class PlayerController : MonoBehaviour {
 		verticalLookRotation += Input.GetAxis("Mouse Y") * mouseSensitivityY;
 		verticalLookRotation = Mathf.Clamp(verticalLookRotation,-60,60);
 		cameraTransform.localEulerAngles = Vector3.left * verticalLookRotation;
-		
 		// Set movement to horizontal and vertical
 		float inputX = Input.GetAxisRaw("Horizontal");
 		float inputY = Input.GetAxisRaw("Vertical");
@@ -60,6 +62,8 @@ public class PlayerController : MonoBehaviour {
 				playerrigidbody.AddForce(transform.up * jumpForce);
 			}
 		}
+
+
 		// Check if your on the ground
 		Ray ray = new Ray(transform.position, -transform.up);
 		RaycastHit hit;
@@ -75,6 +79,8 @@ public class PlayerController : MonoBehaviour {
 		// Apply movement to rigidbody
 		Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
 		playerrigidbody.MovePosition(playerrigidbody.position + localMove);
+
+		
 		// use raycast for gravity
 		Ray gravray = new Ray(transform.position, Vector3.forward);
         if (Physics.Raycast(gravray,10.1f)){
@@ -83,12 +89,16 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 	void Gravity(){
+		//https://www.youtube.com/watch?v=UeqfHkfPNh4
 		playerrigidbody.useGravity = false;
-        //playerrigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        //Vector3 gravityUp = (playerrigidbody.position - transform.position).normalized;
-        //Vector3 localUp = playerrigidbody.transform.up;
-        //playerrigidbody.rotation = Quaternion.FromToRotation(localUp, gravityUp) * playerrigidbody.rotation;
-        //playerrigidbody.AddForce((planetRigid.position - transform.position).normalized * gravityac);
-		// rigidbody.AddForce((planet.position - transform.position).normalized * acceleration);
+		Vector3 gravDir = (transform.position - planet.transform.position).normalized;
+		if (grounded == false){
+			playerrigidbody.AddForce(gravDir * -gravityac);
+		}
+		Quaternion toRotation = Quaternion.FromToRotation(transform.up, groundnormal) * transform.rotation;
+		transform.rotation = toRotation;
+
+		playerrigidbody.velocity = Vector3.zero;
+		playerrigidbody.AddForce(gravDir * gravityac);
 	}
 }
