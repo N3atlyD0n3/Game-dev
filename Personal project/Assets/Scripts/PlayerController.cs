@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour {
 	public float walkSpeed = 6;
     // Set jump to power to 220
 	public float jumpForce = 220;
-    //
+    //set gravity acceleration 
 	public float gravityac = -9.8f;
-	
+	//Get planet game object
 	public GameObject planet;
 	//
 	public LayerMask groundedMask;
