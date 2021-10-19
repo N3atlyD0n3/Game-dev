@@ -83,22 +83,19 @@ public class PlayerController : MonoBehaviour {
 		
 		// use raycast for gravity
 		Ray gravray = new Ray(transform.position, Vector3.forward);
-        if (Physics.Raycast(gravray,10.1f)){
-			Gravity();
-            
-        }
-	}
-	void Gravity(){
+
 		//https://www.youtube.com/watch?v=UeqfHkfPNh4
 		playerrigidbody.useGravity = false;
 		Vector3 gravDir = (transform.position - planet.transform.position).normalized;
 		if (grounded == false){
 			playerrigidbody.AddForce(gravDir * -gravityac);
 		}
-		Quaternion toRotation = Quaternion.FromToRotation(transform.up, groundnormal) * transform.rotation;
+		Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
 		transform.rotation = toRotation;
 
+		public void NewPlanet(GameObject newplanet){}
 		playerrigidbody.velocity = Vector3.zero;
 		playerrigidbody.AddForce(gravDir * gravityac);
 	}
+	
 }
