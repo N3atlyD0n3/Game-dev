@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     //Declate player rigidbody
     private Rigidbody rb;
     //Declare weapom
-    private Weapon weapon;
+    private Weapon Weapon;
     //Start
     void Awake(){
     //Set player camera to camera
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     //Get player rigidbody
     rb = GetComponent<Rigidbody>();
     //Get weapon
-    weapon = GetComponent<Weapon>();
+    Weapon = GetComponent<Weapon>();
     //Hide cursor
     Cursor.lockState = CursorLockMode.Locked;
     
@@ -44,8 +44,8 @@ public class PlayerController : MonoBehaviour
     Jump();
     //If mouse 1 button pressed fire weapon
     if(Input.GetButton("Fire1")){
-    if(weapon.CanShoot()){
-    weapon.Shoot();
+    if(Weapon.CanShoot()){
+    Weapon.Shoot();
                 }
             }
     }
