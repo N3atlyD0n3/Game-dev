@@ -10,8 +10,10 @@ public class PlayerController : MonoBehaviour {
 	public float jumpForce = 220;
     //set gravity acceleration 
 	public float gravityac = -9.8f;
-	//Get planet game object
+	//
 	public GameObject planet;
+	//
+	public GameObject PlayerPlaceHolder;
 	//
 	public LayerMask groundedMask;
 	// Make grounded Var
@@ -92,10 +94,20 @@ public class PlayerController : MonoBehaviour {
 		}
 		Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
 		transform.rotation = toRotation;
-
-	void NewPlanet(GameObject newplanet){
-		playerrigidbody.velocity = Vector3.zero;
-		playerrigidbody.AddForce(gravDir * gravityac);
-		}
 	}
+
+	private void onTriggerEnter(Collider collision){
+		if(collision.transform != planetRigid.transform){
+			planet = collision.transform.gameObject;
+			Vector3 gravDir = (transform.position - planet.transform.position).normalized;
+			Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
+			transform.rotation = toRotation;
+			playerrigidbody.velocity = Vector3.zero;
+			playerrigidbody.AddForce(gravDir * gravityac);
+
+			PlayerPlaceHolder.GetComponent<PlayerPlaceHolder>().NewPlanet(planet);
+				}
+			}
+		
+	
 }
