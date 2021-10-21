@@ -93,9 +93,9 @@ public class PlayerController : MonoBehaviour {
 		Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
 		transform.rotation = toRotation;
 
-		public void NewPlanet(GameObject newplanet){}
+	void NewPlanet(GameObject newplanet){
 		playerrigidbody.velocity = Vector3.zero;
 		playerrigidbody.AddForce(gravDir * gravityac);
+		}
 	}
-	
 }
