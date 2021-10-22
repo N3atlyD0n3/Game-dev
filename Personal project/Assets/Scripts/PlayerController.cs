@@ -8,11 +8,21 @@ public class PlayerController : MonoBehaviour {
 	public float walkSpeed = 6;
     // Set jump to power to 220
 	public float jumpForce = 220;
+<<<<<<< HEAD
     //
 	public float gravityac = -9.8f;
 	
 	public GameObject planet;
 	//
+=======
+    //set gravity acceleration 
+	public float gravityac = -9.8f;
+	//
+	public GameObject planet;
+	//
+	public GameObject PlayerPlaceHolder;
+	//
+>>>>>>> main
 	public LayerMask groundedMask;
 	// Make grounded Var
 	bool grounded;
@@ -83,22 +93,46 @@ public class PlayerController : MonoBehaviour {
 		
 		// use raycast for gravity
 		Ray gravray = new Ray(transform.position, Vector3.forward);
+<<<<<<< HEAD
         if (Physics.Raycast(gravray,10.1f)){
 			Gravity();
             
         }
 	}
 	void Gravity(){
+=======
+
+>>>>>>> main
 		//https://www.youtube.com/watch?v=UeqfHkfPNh4
 		playerrigidbody.useGravity = false;
 		Vector3 gravDir = (transform.position - planet.transform.position).normalized;
 		if (grounded == false){
 			playerrigidbody.AddForce(gravDir * -gravityac);
 		}
+<<<<<<< HEAD
 		Quaternion toRotation = Quaternion.FromToRotation(transform.up, groundnormal) * transform.rotation;
 		transform.rotation = toRotation;
 
 		playerrigidbody.velocity = Vector3.zero;
 		playerrigidbody.AddForce(gravDir * gravityac);
+=======
+		Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
+		transform.rotation = toRotation;
+>>>>>>> main
 	}
+
+	private void onTriggerEnter(Collider collision){
+		if(collision.transform != planetRigid.transform){
+			planet = collision.transform.gameObject;
+			Vector3 gravDir = (transform.position - planet.transform.position).normalized;
+			Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
+			transform.rotation = toRotation;
+			playerrigidbody.velocity = Vector3.zero;
+			playerrigidbody.AddForce(gravDir * gravityac);
+
+			PlayerPlaceHolder.GetComponent<PlayerPlaceHolder>().NewPlanet(planet);
+				}
+			}
+		
+	
 }
