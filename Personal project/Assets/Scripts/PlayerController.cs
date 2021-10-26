@@ -8,17 +8,12 @@ public class PlayerController : MonoBehaviour {
 	public float walkSpeed = 6;
     // Set jump to power to 220
 	public float jumpForce = 220;
-
-    //
+    //set gravity acceleration 
 	public float gravityac = -9.8f;
 	
 	public GameObject planet;
 	//
 	//
-	public float height = 10.0f;
-	//
-	//
-
 	public LayerMask groundedMask;
 	// Make grounded Var
 	bool grounded;
@@ -90,16 +85,17 @@ public class PlayerController : MonoBehaviour {
 		playerrigidbody.MovePosition(playerrigidbody.position + localMove);
 
 		
-		// Set Gravity when grounded == true
-		if (grounded == true){
-			Vector3 gravDir = (transform.position - planet.transform.position).normalized;
-			Quaternion toRotation = Quaternion.FromToRotation(transform.up, groundnormal) * transform.rotation;
-			transform.rotation = toRotation;
+		// use raycast for gravity
+		Ray gravray = new Ray(transform.position, Vector3.forward);
 
-			playerrigidbody.velocity = Vector3.zero;
-			playerrigidbody.AddForce(gravDir);
+		//https://www.youtube.com/watch?v=UeqfHkfPNh4
+		playerrigidbody.useGravity = false;
+		Vector3 gravDir = (transform.position - planet.transform.position).normalized;
+		if (grounded == false){
+			playerrigidbody.AddForce(gravDir * -gravityac);
 		}
-	
+		Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
+		transform.rotation = toRotation;
 	}
 	//void Gravity(){
 		//https://www.youtube.com/watch?v=UeqfHkfPNh4
