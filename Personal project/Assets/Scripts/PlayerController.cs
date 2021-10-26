@@ -8,13 +8,17 @@ public class PlayerController : MonoBehaviour {
 	public float walkSpeed = 6;
     // Set jump to power to 220
 	public float jumpForce = 220;
-    //set gravity acceleration 
+
+    //
 	public float gravityac = -9.8f;
-	//
+	
 	public GameObject planet;
 	//
-	public GameObject PlayerPlaceHolder;
 	//
+	public float height = 10.0f;
+	//
+	//
+
 	public LayerMask groundedMask;
 	// Make grounded Var
 	bool grounded;
@@ -68,13 +72,16 @@ public class PlayerController : MonoBehaviour {
 
 		// Check if your on the ground
 		Ray ray = new Ray(transform.position, -transform.up);
+		Debug.DrawRay(transform.position, -transform.up * height,Color.blue);
 		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit, 1 + .1f, groundedMask)) {
+		if (Physics.Raycast(ray, out hit, height, groundedMask)) {
 			grounded = true;
+
 		}
 		else {
 			grounded = false;
 		}
+		
 	}
 	// Set fixed update to handle physics
 	void FixedUpdate() {
@@ -83,31 +90,32 @@ public class PlayerController : MonoBehaviour {
 		playerrigidbody.MovePosition(playerrigidbody.position + localMove);
 
 		
-		// use raycast for gravity
-		Ray gravray = new Ray(transform.position, Vector3.forward);
-
-		//https://www.youtube.com/watch?v=UeqfHkfPNh4
-		playerrigidbody.useGravity = false;
-		Vector3 gravDir = (transform.position - planet.transform.position).normalized;
-		if (grounded == false){
-			playerrigidbody.AddForce(gravDir * -gravityac);
-		}
-		Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
-		transform.rotation = toRotation;
-	}
-
-	private void onTriggerEnter(Collider collision){
-		if(collision.transform != planetRigid.transform){
-			planet = collision.transform.gameObject;
+		// Set Gravity when grounded == true
+		if (grounded == true){
 			Vector3 gravDir = (transform.position - planet.transform.position).normalized;
-			Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
+			Quaternion toRotation = Quaternion.FromToRotation(transform.up, groundnormal) * transform.rotation;
 			transform.rotation = toRotation;
-			playerrigidbody.velocity = Vector3.zero;
-			playerrigidbody.AddForce(gravDir * gravityac);
 
-			PlayerPlaceHolder.GetComponent<PlayerPlaceHolder>().NewPlanet(planet);
-				}
-			}
-		
+			playerrigidbody.velocity = Vector3.zero;
+			playerrigidbody.AddForce(gravDir);
+		}
 	
+	}
+	//void Gravity(){
+		//https://www.youtube.com/watch?v=UeqfHkfPNh4
+		//playerrigidbody.useGravity = false;
+		
+		//Ray gravray = new Ray(transform.position, -transform.up);
+		//Debug.DrawRay(transform.position, -transform.up * height,Color.red);
+        //if (Physics.Raycast(gravray,height)){
+		//	if (grounded == false){
+			//playerrigidbody.AddForce(gravDir * -gravityac);
+			//}
+		//}
+
+
+
+		//Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
+		//transform.rotation = toRotation;
+	//}
 }

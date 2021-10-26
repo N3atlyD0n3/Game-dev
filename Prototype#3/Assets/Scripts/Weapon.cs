@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     // Make Gamobject 
-    public GameObject ProjectilePrefab;
+    public ObjectPool ProjectilePool;
     // Make Muzzle
     public Transform muzzle; 
     //Make public int for current ammo
@@ -45,8 +45,11 @@ public class Weapon : MonoBehaviour
         lastShootTime = Time.time;
         // Subtract from current ammo
         CurAmmo--;
-        //Make a copy of the projectile and move it/
-        GameObject projectile = Instantiate(ProjectilePrefab, muzzle.position, muzzle.rotation);
+        //Make a copy of the projectile and move it
+        GameObject projectile = ProjectilePool.GetObject();
+        projectile.transform.position = muzzle.position;
+        projectile.transform.rotation = muzzle.rotation;
+        
         projectile.GetComponent<Rigidbody>().velocity = muzzle.forward * projectileSpeed;
     }
 }

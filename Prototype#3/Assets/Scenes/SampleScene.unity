@@ -713,8 +713,9 @@ GameObject:
   - component: {fileID: 1038488312}
   - component: {fileID: 1038488311}
   - component: {fileID: 1038488310}
-  - component: {fileID: 1038488315}
   - component: {fileID: 1038488316}
+  - component: {fileID: 1038488315}
+  - component: {fileID: 1038488317}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -845,13 +846,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4d3989d5ca449d09d926b672cebd13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 6568521408353641136, guid: 90e4e0c11fe424d8da25697f82868750, type: 3}
+  ProjectilePool: {fileID: 1038488317}
   muzzle: {fileID: 371838800}
   CurAmmo: 10
   maxAmmo: 100
-  infiniteAmmo: 1
+  infiniteAmmo: 0
   Rate: 0.5
-  projectileSpeed: 10
+  projectileSpeed: 16
+--- !u!114 &1038488317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038488309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993d3b4a08ae74f4089082bf7050954b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objPrefab: {fileID: 6568521408353641136, guid: 90e4e0c11fe424d8da25697f82868750, type: 3}
+  CreateOnStart: 10
 --- !u!1001 &1310835210
 PrefabInstance:
   m_ObjectHideFlags: 0
