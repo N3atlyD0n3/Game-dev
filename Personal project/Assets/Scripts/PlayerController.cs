@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour {
 	public float jumpForce = 220;
     //set gravity acceleration 
 	public float gravityac = -9.8f;
+	//
+	public float height;
+
 	
+	//
 	public GameObject planet;
 	//
 	//
@@ -28,7 +32,7 @@ public class PlayerController : MonoBehaviour {
     // Set Camera
 	Transform cameraTransform;
     // Set rigidbody
-	Rigidbody playerrigidbody;
+	public Rigidbody playerrigidbody;
 	Rigidbody planetRigid;
     // Awake is simalar to start
 	void Awake() {
@@ -38,7 +42,7 @@ public class PlayerController : MonoBehaviour {
         // Set Camera to whatever camera is there
 		cameraTransform = Camera.main.transform;
         // Set rigidbody = to rigidbody (more modern way)
-		playerrigidbody = GetComponent<Rigidbody> ();
+		playerrigidbody = GetComponent<Rigidbody>();
 		//get planet rigidbody
 		planet = GameObject.FindWithTag("Planet");
 		planetRigid = planet.GetComponent<Rigidbody>();
@@ -67,16 +71,21 @@ public class PlayerController : MonoBehaviour {
 
 		// Check if your on the ground
 		Ray ray = new Ray(transform.position, -transform.up);
-		Debug.DrawRay(transform.position, -transform.up * height,Color.blue);
 		RaycastHit hit;
+		
+		Debug.DrawRay(transform.position, -transform.up * height,Color.red);
+		Vector3 gravDir = (transform.position - planet.transform.position).normalized;
 		if (Physics.Raycast(ray, out hit, height, groundedMask)) {
 			grounded = true;
-
+			playerrigidbody.AddForce(hit.normal * gravityac);
+			Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
+			transform.rotation = toRotation;
 		}
 		else {
 			grounded = false;
 		}
-		
+
+
 	}
 	// Set fixed update to handle physics
 	void FixedUpdate() {
@@ -86,32 +95,14 @@ public class PlayerController : MonoBehaviour {
 
 		
 		// use raycast for gravity
-		Ray gravray = new Ray(transform.position, Vector3.forward);
-
-		//https://www.youtube.com/watch?v=UeqfHkfPNh4
-		playerrigidbody.useGravity = false;
-		Vector3 gravDir = (transform.position - planet.transform.position).normalized;
-		if (grounded == false){
-			playerrigidbody.AddForce(gravDir * -gravityac);
-		}
-		Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
-		transform.rotation = toRotation;
-	}
-	//void Gravity(){
-		//https://www.youtube.com/watch?v=UeqfHkfPNh4
-		//playerrigidbody.useGravity = false;
 		
-		//Ray gravray = new Ray(transform.position, -transform.up);
-		//Debug.DrawRay(transform.position, -transform.up * height,Color.red);
-        //if (Physics.Raycast(gravray,height)){
-		//	if (grounded == false){
-			//playerrigidbody.AddForce(gravDir * -gravityac);
-			//}
-		//}
-
-
-
-		//Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
-		//transform.rotation = toRotation;
-	//}
+		if (grounded == true){
+			print("Grounded");
+			playerrigidbody.useGravity = false;	
+		}
+		if (grounded == false){
+			print("grounded false");
+				playerrigidbody.useGravity = false;
+		}
+	}
 }
