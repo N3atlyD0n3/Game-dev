@@ -993,9 +993,9 @@ MonoBehaviour:
   muzzle: {fileID: 371838800}
   CurAmmo: 10
   maxAmmo: 100
-  infiniteAmmo: 0
-  Rate: 0.5
-  projectileSpeed: 16
+  infiniteAmmo: 1
+  Rate: 0.01
+  projectileSpeed: 10
 --- !u!114 &1038488317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1483,6 +1483,7 @@ GameObject:
   - component: {fileID: 1683615156}
   - component: {fileID: 1683615155}
   - component: {fileID: 1683615154}
+  - component: {fileID: 1683615161}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1522,9 +1523,9 @@ MonoBehaviour:
   muzzle: {fileID: 1961012323}
   CurAmmo: 10
   maxAmmo: 100
-  infiniteAmmo: 0
-  Rate: 0.5
-  projectileSpeed: 16
+  infiniteAmmo: 1
+  Rate: 0.1
+  projectileSpeed: 20
 --- !u!114 &1683615156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1617,6 +1618,24 @@ Transform:
   m_Father: {fileID: 544967396}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1683615161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683615153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371858d5db22c46fa9a185eaa3a3b35d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHP: 10
+  maxHP: 10
+  minHP: 0
+  moveSpeed: 4.42
+  attackRange: 19.08
+  yPathOffset: 2.5
 --- !u!1 &1779475283
 GameObject:
   m_ObjectHideFlags: 0

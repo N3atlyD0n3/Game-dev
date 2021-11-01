@@ -36,17 +36,13 @@ public class Enemy : MonoBehaviour{
         //Create invoke, repeats at set interval. |method, start delay, delay between intervals| 
         InvokeRepeating("updatePath", 0.0f, 0.5f);
     }
-    // Update is called once per frame
-    void Update(){
-        
-    }
     //Create update path function/method
     void updatePath(){
         //Calculate path to the set target
         NavMeshPath navMeshPath = new NavMeshPath();
-        navMesh.CalculatePath(transform.position, target.transform.position, navMeshPath.AllAreas, navMeshPath);
+        NavMesh.CalculatePath(transform.position, target.transform.position, NavMesh.AllAreas, navMeshPath);
         //save path as list
-        path = navMesh.corners.ToList();
+        path = navMeshPath.corners.ToList();
     }
     //Create chase function/method
     void chaseTarget(){
@@ -59,6 +55,32 @@ public class Enemy : MonoBehaviour{
 
         if(transform.position == path[0] + new Vector3( 0, yPathOffset, 0)){
             path.RemoveAt(0);
+        }
+    }
+    void Die(){
+        Destroy(gameObject);
+    }
+    public void takeDamage(int Damage){
+        currentHP -= Damage;
+        if(currentHP <= 0 );{
+            Die();
+        }
+    }
+    void Update(){
+        //Look at target
+        Vector3 dir = (target.transform.position - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.x,dir.x * Mathf.Rad2Deg);
+        transform.eulerAngles = Vector3.up * angle; 
+        //Get distance from enemy to target
+        float dist = Vector3.Distance(transform.position, target.transform.position);
+        //if weapon is able to fire fire
+        if(dist <= attackRange){
+            if(weapon.CanShoot()){
+                weapon.Shoot();
+            }
+            else{
+                chaseTarget();
+            }
         }
     }
 

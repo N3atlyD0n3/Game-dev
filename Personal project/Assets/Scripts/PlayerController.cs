@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
 	//
 	public GameObject planet;
 	//
+	private GameObject groundObject; 
 	//
 	public LayerMask groundedMask;
 	// Make grounded Var
@@ -74,16 +75,24 @@ public class PlayerController : MonoBehaviour {
 		RaycastHit hit;
 		
 		Debug.DrawRay(transform.position, -transform.up * height,Color.red);
-		Vector3 gravDir = (transform.position - planet.transform.position).normalized;
+
+		
 		if (Physics.Raycast(ray, out hit, height, groundedMask)) {
 			grounded = true;
-			playerrigidbody.AddForce(hit.normal * gravityac);
-			Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
-			transform.rotation = toRotation;
-		}
+			if(hit.rigidbody != null){
+				groundObject = hit.rigidbody;
+			}
+				Vector3 gravDir = (transform.position - groundObject.transform.position).normalized;
+				playerrigidbody.AddForce(hit.normal * gravityac);
+				Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
+				transform.rotation = toRotation;
+			}
+
 		else {
 			grounded = false;
 		}
+		
+		
 
 
 	}
@@ -98,7 +107,10 @@ public class PlayerController : MonoBehaviour {
 		
 		if (grounded == true){
 			print("Grounded");
-			playerrigidbody.useGravity = false;	
+			playerrigidbody.useGravity = false;
+			 
+			
+			
 		}
 		if (grounded == false){
 			print("grounded false");
