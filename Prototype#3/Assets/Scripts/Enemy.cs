@@ -29,6 +29,8 @@ public class Enemy : MonoBehaviour{
     // Start is called before the first frame update
     void Start(){
         //gather components
+        //set health
+        currentHP = maxHP;
         //set weapon
         weapon = GetComponent<Weapon>();
         //find player
@@ -62,14 +64,14 @@ public class Enemy : MonoBehaviour{
     }
     public void takeDamage(int Damage){
         currentHP -= Damage;
-        if(currentHP <= 0 );{
+        if(currentHP <= 0 ){
             Die();
         }
     }
     void Update(){
         //Look at target
         Vector3 dir = (target.transform.position - transform.position).normalized;
-        float angle = Mathf.Atan2(dir.x,dir.x * Mathf.Rad2Deg);
+        float angle = Mathf.Atan2(dir.x,dir.z) * Mathf.Rad2Deg;
         transform.eulerAngles = Vector3.up * angle; 
         //Get distance from enemy to target
         float dist = Vector3.Distance(transform.position, target.transform.position);
@@ -83,5 +85,4 @@ public class Enemy : MonoBehaviour{
             }
         }
     }
-
 }
