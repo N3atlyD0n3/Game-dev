@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Set header for stats
+    [Header("Stats")]
     //Set Player speed
     public float moveSpeed = 6;
-    //Declare mouse x rotation
-    private float rotX;
     //Set jump multiplyer
     public float jumpforce;
+    //Set max and min HP
+    public int currentHP;
+    public int maxHP;
+    //Make header for settings
+    [Header("Settings")]
+    //Declare mouse x rotation
+    private float rotX;
     //Set Mouse sensitivity
     public float mouseSens = 5;
     //Set max and min camera look
@@ -31,7 +38,6 @@ public class PlayerController : MonoBehaviour
     Weapon = GetComponent<Weapon>();
     //Hide cursor
     Cursor.lockState = CursorLockMode.Locked;
-    
     }
     // Start is called before the first frame update
     void Update(){
@@ -76,5 +82,14 @@ public class PlayerController : MonoBehaviour
     //Apply clamp
     cam.transform.localRotation = Quaternion.Euler(-rotX,0,0);
     transform.eulerAngles += Vector3.up * Y;
+    }
+    public void TakeDamage(int damage){
+        currentHP -= damage; 
+        if (currentHP <= 0){
+            Die();
+        }
+    }
+    void Die(){
+        print("You suck");
     }
 }

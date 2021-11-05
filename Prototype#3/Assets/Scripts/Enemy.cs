@@ -5,13 +5,12 @@ using UnityEngine.AI;
 using System.Linq;
 public class Enemy : MonoBehaviour{
     //set header for enemy stats
-    [Header("Stats)")]
+    [Header("Stats")]
     //set current hp
     public int currentHP;
     //set max hp 
     public int maxHP;
-    //set min hp
-    public int minHP;
+    
     //set header for movement
     [Header("Movement")]
     //set movespeed
@@ -59,14 +58,14 @@ public class Enemy : MonoBehaviour{
             path.RemoveAt(0);
         }
     }
-    void Die(){
-        Destroy(gameObject);
-    }
-    public void takeDamage(int Damage){
-        currentHP -= Damage;
+    public void TakeDamage(int damage){
+        currentHP -= damage;
         if(currentHP <= 0 ){
             Die();
         }
+    }
+    void Die(){
+        Destroy(gameObject);
     }
     void Update(){
         //Look at target

@@ -74,10 +74,6 @@ public class PlayerController : MonoBehaviour {
 			}
 		else {
 			grounded = false;
-			Vector3 gravDir = (transform.position + groundObject.transform.position).normalized;
-			//playerrigidbody.AddForce(hit.normal / gravityac);
-			Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
-			transform.rotation = toRotation;
 		}
 		//Able Jump ray
 		if (Physics.Raycast(JumpRay, out hit, jumpheight, groundedMask)){

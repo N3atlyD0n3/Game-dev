@@ -382,7 +382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371838799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.48}
+  m_LocalPosition: {x: 0, y: 0, z: 0.667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 679697306}
@@ -855,13 +855,13 @@ GameObject:
   - component: {fileID: 1038488313}
   - component: {fileID: 1038488312}
   - component: {fileID: 1038488311}
+  - component: {fileID: 1038488315}
   - component: {fileID: 1038488310}
   - component: {fileID: 1038488316}
-  - component: {fileID: 1038488315}
   - component: {fileID: 1038488317}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -880,6 +880,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   jumpforce: 3
+  currentHP: 8
+  maxHP: 10
   mouseSens: 5
   maxLookX: 80
   minLookX: -80
@@ -992,7 +994,7 @@ MonoBehaviour:
   ProjectilePool: {fileID: 1038488317}
   muzzle: {fileID: 371838800}
   CurAmmo: 10
-  maxAmmo: 100
+  maxAmmo: 10
   infiniteAmmo: 1
   Rate: 0.01
   projectileSpeed: 10
@@ -1481,13 +1483,12 @@ GameObject:
   - component: {fileID: 1683615158}
   - component: {fileID: 1683615157}
   - component: {fileID: 1683615154}
-  - component: {fileID: 1683615156}
   - component: {fileID: 1683615155}
   - component: {fileID: 1683615161}
   - component: {fileID: 1683615162}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1520,27 +1521,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4d3989d5ca449d09d926b672cebd13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePool: {fileID: 1683615156}
+  ProjectilePool: {fileID: 1683615162}
   muzzle: {fileID: 1961012323}
   CurAmmo: 10
   maxAmmo: 100
   infiniteAmmo: 1
   Rate: 0.1
   projectileSpeed: 20
---- !u!114 &1683615156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683615153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 993d3b4a08ae74f4089082bf7050954b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objPrefab: {fileID: 6568521408353641136, guid: 90e4e0c11fe424d8da25697f82868750, type: 3}
-  CreateOnStart: 10
 --- !u!136 &1683615157
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1633,7 +1620,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 10
   maxHP: 10
-  minHP: 0
   moveSpeed: 4.42
   attackRange: 19.08
   yPathOffset: 2.5
@@ -1650,7 +1636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objPrefab: {fileID: 6568521408353641136, guid: 90e4e0c11fe424d8da25697f82868750, type: 3}
-  CreateOnStart: 0
+  CreateOnStart: 10
 --- !u!1 &1779475283
 GameObject:
   m_ObjectHideFlags: 0
