@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 	// Set Camera
 	Transform cameraTransform;
 	// Set rigidbody
-	public Rigidbody playerrigidbody;
+	Rigidbody playerrigidbody;
 	// Awake is simalar to start
 	void Awake()
 	{
@@ -60,15 +60,18 @@ public class PlayerController : MonoBehaviour
 		// Set movement to horizontal and vertical
 		float inputX = Input.GetAxisRaw("Horizontal");
 		float inputY = Input.GetAxisRaw("Vertical");
-		//Make ray for grounded and jump capability
+		//Make the rays 
+		Ray Gravyray = new Ray(transform.position, -transform.up);
 		Ray JumpRay = new Ray(transform.position, -transform.up);
+		//Set raycast hit called hit
 		RaycastHit hit;
-<<<<<<< HEAD
 		//Draw ray on screen
 		Debug.DrawRay(transform.position, -transform.up * height,Color.red);
 		Debug.DrawRay(transform.position, -transform.up * jumpheight,Color.blue);
+		//
 		//If ground ray hit gravity yes
-		if (Physics.Raycast(ray, out hit, height, groundedMask)) {
+		//
+		if (Physics.Raycast(Gravyray, out hit, height, groundedMask)) {
 			grounded = true;
 			if(hit.rigidbody != null){
 				groundObject = hit.transform.gameObject;
@@ -78,13 +81,12 @@ public class PlayerController : MonoBehaviour
 				Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
 				transform.rotation = toRotation;
 			}
-		else {
-			grounded = false;
-		}
-=======
-		Debug.DrawRay(transform.position, -transform.up * jumpheight, Color.blue);
->>>>>>> main
-		//Able Jump ray
+			else {
+			 grounded = false;
+			}
+		//
+		//Jump raycast
+		//
 		if (Physics.Raycast(JumpRay, out hit, jumpheight, groundedMask))
 		{
 			ableJump = true;
@@ -109,85 +111,11 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 	}
-	// Set fixed update to handle physics
+	// Set fixed update to handle physics 
 	void FixedUpdate()
 	{
 		// Apply movement to rigidbody
 		Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
 		playerrigidbody.MovePosition(playerrigidbody.position + localMove);
-		//Choose gravity
-		//GravityTest();
-		RayGravity();
-
 	}
-	void RayGravity()
-    {
-		Ray ray = new Ray(transform.position, -transform.up);
-		//set hit var
-		RaycastHit hit;
-		//Draw ray on screen
-		Debug.DrawRay(transform.position, -transform.up * height, Color.red);
-		//If ground ray hit gravity yes
-		if (Physics.Raycast(ray, out hit, height, groundedMask))
-		{
-			grounded = true;
-			if (hit.rigidbody != null)
-			{
-				groundObject = hit.transform.gameObject;
-			}
-			Vector3 gravDir = (transform.position - groundObject.transform.position).normalized;
-			playerrigidbody.AddForce(hit.normal * gravityac);
-			Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDir) * transform.rotation;
-			transform.rotation = toRotation;
-		}
-		else
-		{
-			grounded = false;
-		}
-		// if gravity is true print grounded
-		if (grounded == true)
-		{
-			print("Grounded");
-			playerrigidbody.useGravity = false;
-			//If gravity is false print grounded false
-		}
-		if (grounded == false)
-		{
-			print("grounded false");
-			playerrigidbody.useGravity = false;
-		}
-		
-	}
-	//void GravityTest()
-    //{
-		 
-		//Vector3 gravityOfNearestBody = Vector3.zero;
-		//float nearestSurfaceDst = float.MaxValue;
-
-		// Gravity
-		//foreach (GameObject body in celestials)
-		//{
-			//float sqrDst = (body.transform.position -playerrigidbody.position).sqrMagnitude;
-			//Vector3 forceDir = (body.transform.position - playerrigidbody.position).normalized;
-			//Vector3 acceleration = forceDir * 50.0f * 0.20f / sqrDst;
-			//playerrigidbody.AddForce(acceleration, ForceMode.Acceleration);
-
-			//float dstToSurface = Mathf.Sqrt(sqrDst) - 0.3f;
-
-			// Find body with strongest gravitational pull 
-			//if (dstToSurface < nearestSurfaceDst)
-			//{
-				//nearestSurfaceDst = dstToSurface;
-				//gravityOfNearestBody = acceleration;
-				
-			//}
-		//}
-
-		// Rotate to align with gravity up
-		//Vector3 gravityUp = -gravityOfNearestBody.normalized;
-		//playerrigidbody.rotation = Quaternion.FromToRotation(transform.up, gravityUp) * playerrigidbody.rotation;
-
-		// Move
-		//playerrigidbody.MovePosition(playerrigidbody.position + smoothMoveVelocity * Time.fixedDeltaTime);
-	//}
 }
