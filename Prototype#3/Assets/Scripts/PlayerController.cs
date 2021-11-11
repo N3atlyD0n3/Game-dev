@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     //Set jump multiplyer
     public float jumpforce;
     //Set max and min HP
-    public int currentHP;
+    public int curHP;
     public int maxHP;
     //Make header for settings
     [Header("Settings")]
@@ -84,12 +84,18 @@ public class PlayerController : MonoBehaviour
     transform.eulerAngles += Vector3.up * Y;
     }
     public void TakeDamage(int damage){
-        currentHP -= damage; 
-        if (currentHP <= 0){
+        curHP -= damage; 
+        if (curHP <= 0){
             Die();
         }
     }
     void Die(){
         print("You suck");
+    }
+    public void giveHealth(int amountToGive){
+        curHP = Mathf.Clamp(curHP + amountToGive,0,maxHP);
+    }
+    public void giveAmmo(int amountToGive){
+        Weapon.CurAmmo = Mathf.Clamp(Weapon.CurAmmo + amountToGive,0,Weapon.maxAmmo);
     }
 }
