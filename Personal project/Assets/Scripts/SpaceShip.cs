@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpaceShip : MonoBehaviour
 {
+    public float forwardSpeed = 25f, strafeSpeed = 7.5f, hoverSpeed = 5f;
+    private float activeforwardSpeed, activestrafeSpeed, activehoverSpeed; 
     //set grounded mask
     public LayerMask groundedMask; 
     //setraycast length for gravity.
@@ -12,12 +14,17 @@ public class SpaceShip : MonoBehaviour
     private GameObject groundObject; 
     //set bool for grounded
     bool grounded; 
+    //set bool for if your in the ship 
+    bool inShip; 
     //get rigid body.
     Rigidbody shipRigid;
+    //get player script
+    private GameObject PlayerController; 
     // Start is called before the first frame update
     void Start()
     {
         shipRigid = GetComponent<Rigidbody>();
+        PlayerController = FindObjectOfType<PlayerController>().gameObject; 
     }
 
     // Update is called once per frame
@@ -37,6 +44,17 @@ public class SpaceShip : MonoBehaviour
         }
         else{
             grounded = false; 
+        }
+        //if your in the ship
+        if (abletoEnter = true){
+        //set ship controls 
+        activeforwardSpeed = Input.GetAxisRaw("Vertical") * forwardSpeed;
+        activestrafeSpeed = Input.GetAxisRaw("Horizontal") * strafeSpeed;
+        activehoverSpeed = Input.GetAxisRaw("Hover") * hoverSpeed; 
+        //ship movement
+        transform.position += transform.forward * activeforwardSpeed * Time.deltaTime; 
+        transform.position += transform.right * activestrafeSpeed * Time.deltaTime; 
+        transform.position += transform.up * activehoverSpeed * Time.deltaTime; 
         }
     }
 }

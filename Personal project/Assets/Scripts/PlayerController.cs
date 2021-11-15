@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 	public float gravityac = -9.8f;
 	//set raycast length
 	public float height;
+	//set raycast for enter ship distance. 
+	public float enterLength; 
 	//set jump height
 	public float jumpheight = 1.1f;
 	//set private goundobject
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
 	// Make ray cast var
 	bool grounded;
 	bool ableJump;
+	bool abletoEnter;
 	//Get celestial
 	//GameObject[] celestials;
 	// Make move amount Var
@@ -36,6 +39,8 @@ public class PlayerController : MonoBehaviour
 	Transform cameraTransform;
 	// Set rigidbody
 	Rigidbody playerrigidbody;
+	//
+	private SpaceShip SpaceShip; 
 	// Awake is simalar to start
 	void Awake()
 	{
@@ -46,8 +51,8 @@ public class PlayerController : MonoBehaviour
 		cameraTransform = Camera.main.transform;
 		// Set rigidbody = to rigidbody (more modern way)
 		playerrigidbody = GetComponent<Rigidbody>();
-		//Get Planets and such
-		//celestials = GameObject.FindGameObjectsWithTag("Celestial");
+		//Get ship controller
+		SpaceShip = GetComponent<SpaceShip>();
 	}
 	// Start the updating sequence
 	void Update()
@@ -63,11 +68,13 @@ public class PlayerController : MonoBehaviour
 		//Make the rays 
 		Ray Gravyray = new Ray(transform.position, -transform.up);
 		Ray JumpRay = new Ray(transform.position, -transform.up);
+		Ray EnterShip = new Ray(transform.position, transform.forward);
 		//Set raycast hit called hit
 		RaycastHit hit;
 		//Draw ray on screen
 		Debug.DrawRay(transform.position, -transform.up * height,Color.red);
 		Debug.DrawRay(transform.position, -transform.up * jumpheight,Color.blue);
+		Debug.DrawRay(transform.position, transform.forward * enterLength);
 		//
 		//If ground ray hit gravity yes
 		//
@@ -109,6 +116,17 @@ public class PlayerController : MonoBehaviour
 					playerrigidbody.AddForce(transform.up * jumpForce);
 				}
 			}
+		}
+		if (Physics.Raycast(EnterShip,out hit, enterLength)){
+			abletoEnter = true;
+			if (Input.GetButtonDown("Enter")){
+				if (abletoEnter = true){
+				Destroy(gameObject); 
+				}
+			}
+		}
+		else{
+			abletoEnter = false; 
 		}
 	}
 	// Set fixed update to handle physics 
