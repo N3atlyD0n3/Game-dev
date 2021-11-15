@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     //Declare weapom
     private Weapon Weapon;
+    private OddPill OddPill; 
     //Start
     void Awake(){
     //Set player camera to camera
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
     rb = GetComponent<Rigidbody>();
     //Get weapon
     Weapon = GetComponent<Weapon>();
+    //get odd pill
+    OddPill = GetComponent<OddPill>(); 
     //Hide cursor
     Cursor.lockState = CursorLockMode.Locked;
     }
@@ -52,8 +55,8 @@ public class PlayerController : MonoBehaviour
     if(Input.GetButton("Fire1")){
     if(Weapon.CanShoot()){
     Weapon.Shoot();
-                }
             }
+        }
     }
     void Move(){
     //Get player x and z axis and * by move speed
