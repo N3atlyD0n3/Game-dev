@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     public float LifeTime;
     //Set var for shootime
     private float shootTime;
-
+    public GameObject hitParticle; 
     void onEnable(){
         shootTime = Time.time;
     }
@@ -28,6 +28,10 @@ public class Projectile : MonoBehaviour
             other.GetComponent<Enemy>().TakeDamage(damage);
             //disable projectile
         gameObject.SetActive(false);
+        //create particle affect
+        GameObject obj = Instantiate(hitParticle, transform.position, Quaternion.identity);
+        //destroys particle with 0.5 delay
+        Destroy(obj,1.0f);
         }
     }
     // Update is called once per frame

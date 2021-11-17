@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
             points += 1; 
         }
     }
-    void OnGUI(){
-        GUILayout.Label("Points =" , points);
-    }
+    //void OnGUI(){
+      //  GUILayout.Label("Points =" , points);
+    //}
 }

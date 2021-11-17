@@ -405,7 +405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.62499976
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_LocalPosition.z
@@ -773,7 +773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.62500024
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1111,7 +1111,7 @@ MonoBehaviour:
   CurAmmo: 60
   maxAmmo: 260
   infiniteAmmo: 0
-  Rate: 0.01
+  Rate: 0.5
   projectileSpeed: 10
 --- !u!114 &1038488317
 MonoBehaviour:
@@ -1368,6 +1368,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3828692465155680137, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
+      propertyPath: bobHeight
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1378,7 +1382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.625
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1431,7 +1435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3535666510438390841, guid: 247b7f190d44f475093f041cc40d0cbd, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3535666510438390841, guid: 247b7f190d44f475093f041cc40d0cbd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1629,6 +1633,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3828692465155680137, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
+      propertyPath: bobHeight
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1639,7 +1647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.625
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1820,7 +1828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.625
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8961094938362582892, guid: 75629d037d3794287b29cf0dad8a1e36, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1871,9 +1879,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3535666510438390834, guid: 247b7f190d44f475093f041cc40d0cbd, type: 3}
+      propertyPath: CurAmmo
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535666510438390834, guid: 247b7f190d44f475093f041cc40d0cbd, type: 3}
+      propertyPath: maxAmmo
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535666510438390834, guid: 247b7f190d44f475093f041cc40d0cbd, type: 3}
+      propertyPath: infiniteAmmo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535666510438390840, guid: 247b7f190d44f475093f041cc40d0cbd, type: 3}
+      propertyPath: moveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535666510438390840, guid: 247b7f190d44f475093f041cc40d0cbd, type: 3}
+      propertyPath: attackRange
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535666510438390840, guid: 247b7f190d44f475093f041cc40d0cbd, type: 3}
+      propertyPath: yPathOffset
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3535666510438390841, guid: 247b7f190d44f475093f041cc40d0cbd, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3535666510438390841, guid: 247b7f190d44f475093f041cc40d0cbd, type: 3}
       propertyPath: m_LocalPosition.x
