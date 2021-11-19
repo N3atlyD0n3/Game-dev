@@ -180,9 +180,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 10
   maxHP: 10
-  moveSpeed: 4.42
-  attackRange: 19.08
-  yPathOffset: 2.5
+  moveSpeed: 1
+  attackRange: 10
+  yPathOffset: 0.5
 --- !u!114 &3535666510438390843
 MonoBehaviour:
   m_ObjectHideFlags: 0

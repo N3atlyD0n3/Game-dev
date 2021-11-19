@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour{
     private Weapon weapon;
     //set enemy target
     private GameObject target;
+    //get enemy rigid
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start(){
         //gather components
@@ -34,6 +36,8 @@ public class Enemy : MonoBehaviour{
         weapon = GetComponent<Weapon>();
         //find player
         target = FindObjectOfType<PlayerController>().gameObject;
+        //set enemy rigid
+        rb = this.GetComponent<Rigidbody>();
         //Create invoke, repeats at set interval. |method, start delay, delay between intervals| 
         InvokeRepeating("updatePath", 0.0f, 0.5f);
     }
@@ -47,6 +51,9 @@ public class Enemy : MonoBehaviour{
     }
     //Create chase function/method
     void chaseTarget(){
+        //testing new method for chasing target
+        Vector3 Direction = target.transform.position - transform.position;
+        rb.MovePosition((Vector3)transform.position + (Direction * moveSpeed * Time.deltaTime)); 
         //if the path list is empty
         if(path.Count == 0){
             return;
