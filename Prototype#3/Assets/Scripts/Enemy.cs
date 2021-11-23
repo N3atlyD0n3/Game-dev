@@ -52,15 +52,14 @@ public class Enemy : MonoBehaviour{
     //Create chase function/method
     void chaseTarget(){
         //testing new method for chasing target
-        Vector3 Direction = target.transform.position - transform.position;
-        rb.MovePosition((Vector3)transform.position + (Direction * moveSpeed * Time.deltaTime)); 
+        //Vector3 Direction = target.transform.position - transform.position;
+        //rb.MovePosition((Vector3)transform.position + (Direction * moveSpeed * Time.deltaTime)); 
         //if the path list is empty
         if(path.Count == 0){
             return;
         }
         //Move towards closest path
         transform.position = Vector3.MoveTowards(transform.position, path[0] + new Vector3(0, yPathOffset, 0), moveSpeed * Time.deltaTime);
-
         if(transform.position == path[0] + new Vector3( 0, yPathOffset, 0)){
             path.RemoveAt(0);
         }

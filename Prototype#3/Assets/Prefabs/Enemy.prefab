@@ -181,7 +181,7 @@ MonoBehaviour:
   currentHP: 10
   maxHP: 10
   moveSpeed: 1
-  attackRange: 10
+  attackRange: 20
   yPathOffset: 0.5
 --- !u!114 &3535666510438390843
 MonoBehaviour:
