@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     //Set header for stats
     [Header("Stats")]
     //For Player UI 
-    public Slider healthbar;
+    
     //Set Player speed
     public float moveSpeed = 6;
     //Set jump multiplyer
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Update(){
     //Health bar
-    healthbar.value = curHP; 
+ 
     //Call Move function
     Move();
     //Call CameraLook Function
