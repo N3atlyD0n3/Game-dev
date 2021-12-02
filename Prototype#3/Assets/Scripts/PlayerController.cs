@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     //Declate player rigidbody
     private Rigidbody rb;
     //Declare weapom
-    private Weapon Weapon;
+    public Weapon Weapon;
     private OddPill OddPill; 
     //Start
     void Awake(){
