@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class OddPill : MonoBehaviour
 {
-    public GameManager Gamemanager;
+    public GameObject Gamemanager;
+    public string hasPiLL;
     public string pickUpName;
     // Start is called before the first frame update
     void Start()
@@ -15,12 +16,12 @@ public class OddPill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        hasPiLL = GameManager.GetComponent<GameManager>();
     }
     void OnTriggerEnter(Collider other){
         if (other.CompareTag("Player")){
             print(pickUpName + "aquired");
-            Gamemanager.hasPill = true;
+            hasPiLL.hasPill = true;
             Destroy(gameObject);
         }
     }

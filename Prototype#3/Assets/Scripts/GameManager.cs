@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public bool hasPill;
-    private int points;
+    public float points;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +17,8 @@ public class GameManager : MonoBehaviour
     {
         if(hasPill){
             print("Picked up");
-            points += 1; 
+            //points += 0.005f;
+            points = 1f ;
         }
     }
-    //void OnGUI(){
-      //  GUILayout.Label("Points =" , points);
-    //}
 }
