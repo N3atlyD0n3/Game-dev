@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3643681466082735948}
   - component: {fileID: 3643681466082735947}
   - component: {fileID: 3643681466082735946}
-  - component: {fileID: 3643681466082735951}
   - component: {fileID: 3643681466082735936}
+  - component: {fileID: 6909970180224445187}
   m_Layer: 0
   m_Name: OddPill
   m_TagString: Untagged
@@ -115,20 +115,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &3643681466082735951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3643681466082735945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 914b1333782c74b358fc697263e7a511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Gamemanager: {fileID: 0}
-  pickUpName: OddPill
 --- !u!135 &3643681466082735936
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -142,3 +128,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.2
   m_Center: {x: 0.0000019073486, y: -0.00000047683716, z: 0}
+--- !u!114 &6909970180224445187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3643681466082735945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2572432193fba484aaa3f77a6cbfa89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  value: 0
+  rotationSpeed: 0
+  bobSpeed: 0
+  bobHeight: 0

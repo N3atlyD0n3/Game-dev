@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum PickUpType{
     Health,
-    Ammo
+    Ammo,
+
+    Points
 }
 public class PickUP : MonoBehaviour
 {
@@ -30,6 +32,10 @@ public class PickUP : MonoBehaviour
                 case PickUpType.Ammo:
                 player.giveAmmo(value);
                 break;
+
+                case PickUpType.Points:
+                player.givepoints(value);
+                break;
             }
             Destroy(gameObject); 
         }
@@ -42,7 +48,6 @@ public class PickUP : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, StartPOS + offset, bobSpeed * Time.deltaTime); 
         if(transform.position == StartPOS + offset){
             bobingUP = !bobingUP; 
-
         }
     }
 }

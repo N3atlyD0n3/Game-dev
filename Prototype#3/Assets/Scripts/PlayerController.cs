@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     //Set max and min HP
     public int curHP;
     public int maxHP;
+    //Set points
+    public int curpoints = 0; 
     //Make header for settings
     [Header("Settings")]
     //Declare mouse x rotation
@@ -30,7 +32,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     //Declare weapom
     public Weapon Weapon;
-    private OddPill OddPill; 
     //Start
     void Awake(){
     //Set player camera to camera
@@ -39,8 +40,6 @@ public class PlayerController : MonoBehaviour
     rb = GetComponent<Rigidbody>();
     //Get weapon
     Weapon = GetComponent<Weapon>();
-    //get odd pill
-    OddPill = GetComponent<OddPill>(); 
     //Hide cursor
     Cursor.lockState = CursorLockMode.Locked;
     }
@@ -106,4 +105,7 @@ public class PlayerController : MonoBehaviour
         Weapon.CurAmmo = Mathf.Clamp(Weapon.CurAmmo + amountToGive,0,Weapon.maxAmmo);
     }
 
+    public void givepoints(int amountToGive){
+        curpoints += 1;
+    }
 }

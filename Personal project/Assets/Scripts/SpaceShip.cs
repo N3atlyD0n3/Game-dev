@@ -46,15 +46,15 @@ public class SpaceShip : MonoBehaviour
             grounded = false; 
         }
         //if your in the ship
-        if (abletoEnter = true){
+        //if (abletoEnter = true){
         //set ship controls 
-        activeforwardSpeed = Input.GetAxisRaw("Vertical") * forwardSpeed;
-        activestrafeSpeed = Input.GetAxisRaw("Horizontal") * strafeSpeed;
-        activehoverSpeed = Input.GetAxisRaw("Hover") * hoverSpeed; 
+        //activeforwardSpeed = Input.GetAxisRaw("Vertical") * forwardSpeed;
+        //activestrafeSpeed = Input.GetAxisRaw("Horizontal") * strafeSpeed;
+        //activehoverSpeed = Input.GetAxisRaw("Hover") * hoverSpeed; 
         //ship movement
-        transform.position += transform.forward * activeforwardSpeed * Time.deltaTime; 
-        transform.position += transform.right * activestrafeSpeed * Time.deltaTime; 
-        transform.position += transform.up * activehoverSpeed * Time.deltaTime; 
-        }
+        //transform.position += transform.forward * activeforwardSpeed * Time.deltaTime; 
+        //transform.position += transform.right * activestrafeSpeed * Time.deltaTime; 
+        //transform.position += transform.up * activehoverSpeed * Time.deltaTime; 
+        //}
     }
 }
