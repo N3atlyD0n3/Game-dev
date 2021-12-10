@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour{
     public int currentHP;
     //set max hp 
     public int maxHP;
+
+    public int scoretogive; 
     
     //set header for movement
     [Header("Movement")]
@@ -71,7 +73,9 @@ public class Enemy : MonoBehaviour{
         }
     }
     void Die(){
+        GameManager.instance.AddScore(scoretogive);
         Destroy(gameObject);
+
     }
     void Update(){
         //Look at target
