@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine.SceneManagement; 
 public class UserInterface : MonoBehaviour
 {   //Get player 
-    public GameObject Player;
     [Header("Player UI")]
     //set text for ammo and score
     public Text ammoText;
@@ -32,11 +31,7 @@ public class UserInterface : MonoBehaviour
     void Update()
     {   //get player current ammo and change text based off how much ammo
         //healthbar.transform.position = ;
-        updatehealth(curHP,maxHP);
-        TogglePause();
-        SetEndGameScreen();
-        UpdateScore();
-        UpdateAmmo();
+
 
     }
     public void Updatehealth(int curHP, int maxHP){

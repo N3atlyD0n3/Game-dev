@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     //Declate player rigidbody
     private Rigidbody rb;
     //Declare weapom
-    public Weapon Weapon;
+    private Weapon Weapon;
     //Start
     void Awake(){
     //Set player camera to camera
@@ -43,10 +43,20 @@ public class PlayerController : MonoBehaviour
     //Hide cursor
     Cursor.lockState = CursorLockMode.Locked;
     }
+    void Start(){
+        //initilize ui
+        UserInterface.instance.Updatehealth(curHP,maxHP);
+        UserInterface.instance.UpdateScore(0);
+        UserInterface.instance.UpdateAmmo(Weapon.CurAmmo,Weapon.maxAmmo);
+
+    }
     // Start is called before the first frame update
     void Update(){
-    //Health bar
- 
+    //pause menu, dont move 
+    if(GameManager.instance.gamePaused = true){
+        return;
+    }
+    
     //Call Move function
     Move();
     //Call CameraLook Function
@@ -98,6 +108,7 @@ public class PlayerController : MonoBehaviour
     }
     void Die(){
         print("You suck");
+        GameManager.instance.LoseGame();
     }
     public void giveHealth(int amountToGive){
         curHP = Mathf.Clamp(curHP + amountToGive,0,maxHP);

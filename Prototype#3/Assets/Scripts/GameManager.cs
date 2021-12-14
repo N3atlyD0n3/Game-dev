@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     //current score
     public int currentscore;
     //game faused true of false
-    public bool gamePaused; 
+    public bool gamePaused = false; 
     //Make instance of the script
     public static GameManager instance;
     // Start is called before the first frame update
@@ -16,11 +16,9 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
     void Start() {
-        
+        //reset time
+        Time.timeScale = 1.0f;
     }
-
-    
-
     // Update is called once per frame
     void Update(){
         if(Input.GetButton("Cancel")){
@@ -30,9 +28,11 @@ public class GameManager : MonoBehaviour
     public void TogglePausedGame(){
         gamePaused = !gamePaused;
         //time scale = gamepaused if it true time is 0 if not its 1 
-        Time.timescale = gamePaused == true ? 0.0f : 1.0f;
+        Time.timeScale = gamePaused == true ? 0.0f : 1.0f;
         // toggle menu
-        UserInterface.instance.TogglePause(gamePaused);  
+        UserInterface.instance.TogglePause(gamePaused);
+        //toggle mouse cursor
+        Cursor.lockState = gamePaused == true ? CursorLockMode.None : CursorLockMode.Locked;
     }
     public void AddScore(int score){
         currentscore += score; 
@@ -46,5 +46,12 @@ public class GameManager : MonoBehaviour
     public void WinGame(){
         //set game screen
         UserInterface.instance.SetEndGameScreen(true,currentscore); 
+    }
+    //make lose game function
+    public void LoseGame(){
+        //set end game screen
+        UserInterface.instance.SetEndGameScreen(false,currentscore);
+        Time.timeScale = 0.0f;
+        gamePaused = true; 
     }
 }

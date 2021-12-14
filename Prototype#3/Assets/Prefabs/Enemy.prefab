@@ -180,6 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 10
   maxHP: 10
+  scoretogive: 1
   moveSpeed: 1
   attackRange: 20
   yPathOffset: 0.5
