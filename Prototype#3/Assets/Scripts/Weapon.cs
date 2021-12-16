@@ -22,13 +22,20 @@ public class Weapon : MonoBehaviour
     public float projectileSpeed;
     // get player
     private bool isPlayer;
+    //get audio
+    public AudioClip fireSfx;
+    private AudioSource audioSource; 
     // Awake is called before the first frame update
     void Awake()
     {
         //are we attached to the player
         if(GetComponent<PlayerController>()){
             isPlayer = true;
+
         }
+        audioSource = GetComponent<AudioSource>();
+        //set audio source
+
     }
     // Make CanShoot function
     public bool CanShoot(){
@@ -41,6 +48,8 @@ public class Weapon : MonoBehaviour
     }
     // Make Funciton to make projectile
     public void Shoot(){
+        //play audio sfx
+        audioSource.PlayOneShot(fireSfx);
         // Last shot is = time
         lastShootTime = Time.time;
         // Subtract from current ammo
@@ -55,5 +64,6 @@ public class Weapon : MonoBehaviour
         if(isPlayer){
             UserInterface.instance.UpdateAmmo(CurAmmo,maxAmmo);
         }
+
     }
 }

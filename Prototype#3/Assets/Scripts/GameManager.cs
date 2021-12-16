@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     //current score
     public int currentscore;
     //game faused true of false
-    public bool gamePaused = false; 
+    public bool gamePaused; 
     //Make instance of the script
     public static GameManager instance;
     // Start is called before the first frame update

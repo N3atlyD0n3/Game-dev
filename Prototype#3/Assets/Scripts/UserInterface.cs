@@ -42,7 +42,7 @@ public class UserInterface : MonoBehaviour
     }
     public void SetEndGameScreen(bool won, int score){
         EndGameScreen.SetActive(true);
-        endGameHeadertext.text = won == true ? "You Win, You have enough pills for diseasea..." : "You lose, no pills";
+        endGameHeadertext.text = won == true ? "You Win" : "You lose";
         endGameHeadertext.color = won == true ? Color.green : Color.red;
         endGameScoreText.text = "<b>Score</b>\n" + score; 
     }

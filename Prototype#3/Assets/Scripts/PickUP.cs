@@ -10,7 +10,10 @@ public enum PickUpType{
 public class PickUP : MonoBehaviour
 {
     public PickUpType type;
-    public int value; 
+    public int value;
+    //audio clip
+    public AudioClip pickupSfx;
+
     [Header("Bobbing Head")]
     public float rotationSpeed;
     public float bobSpeed;
@@ -37,6 +40,8 @@ public class PickUP : MonoBehaviour
                 player.givepoints(value);
                 break;
             }
+            //play sound effect for picking up an iteam
+            other.GetComponent<AudioSource>().PlayOneShot(pickupSfx);
             Destroy(gameObject); 
         }
     }

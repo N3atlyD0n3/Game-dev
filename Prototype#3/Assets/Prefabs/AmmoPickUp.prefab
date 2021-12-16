@@ -4929,6 +4929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   value: 60
+  pickupSfx: {fileID: 8300000, guid: 7444fd1c9af6d4d1fb29f58ed8960fb1, type: 3}
   rotationSpeed: 50
   bobSpeed: 0.5
   bobHeight: 0.15
