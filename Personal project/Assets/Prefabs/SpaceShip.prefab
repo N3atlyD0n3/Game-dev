@@ -202,7 +202,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2872510366190463004}
   - component: {fileID: 1747181496387968474}
-  - component: {fileID: 4637001104829431247}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -244,19 +243,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!65 &4637001104829431247
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4431431815269987017}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5551081146713764683
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +350,7 @@ GameObject:
   - component: {fileID: 5964217899985643860}
   - component: {fileID: 7323216175812252358}
   - component: {fileID: 3446662532828425448}
-  - component: {fileID: 1656817417477368722}
+  - component: {fileID: 5014700989571907876}
   m_Layer: 0
   m_Name: Capsule (1)
   m_TagString: Untagged
@@ -435,8 +421,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1656817417477368722
-CapsuleCollider:
+--- !u!65 &5014700989571907876
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -445,7 +431,6 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000002, y: 2.0000005, z: 0.99999994}
   m_Center: {x: 0, y: 0, z: 0}

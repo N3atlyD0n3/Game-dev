@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if (Physics.Raycast(EnterShip,out hit, enterLength)){
 			abletoEnter = true;
+			print("Able to enter true");
 			if (Input.GetButtonDown("Enter")){
 				if (abletoEnter = true){
 				Destroy(gameObject); 
@@ -127,6 +128,7 @@ public class PlayerController : MonoBehaviour
 		}
 		else{
 			abletoEnter = false; 
+			print("Able to enter false");
 		}
 	}
 	// Set fixed update to handle physics 
