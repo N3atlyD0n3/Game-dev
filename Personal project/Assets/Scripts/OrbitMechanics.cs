@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrbitMechanics : MonoBehaviour
 {
-    readonly float g= 50f;
+    readonly float g = 5f;
     //float radius = 5; 
 
     GameObject[] celestials;
