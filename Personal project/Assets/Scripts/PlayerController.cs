@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
 	// Set rigidbody
 	Rigidbody playerrigidbody;
 	//
-	private SpaceShip SpaceShip; 
 	// Awake is simalar to start
 	void Awake()
 	{
@@ -51,8 +50,6 @@ public class PlayerController : MonoBehaviour
 		cameraTransform = Camera.main.transform;
 		// Set rigidbody = to rigidbody (more modern way)
 		playerrigidbody = GetComponent<Rigidbody>();
-		//Get ship controller
-		SpaceShip = GetComponent<SpaceShip>();
 	}
 	// Start the updating sequence
 	void Update()

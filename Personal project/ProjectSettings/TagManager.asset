@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Planet
   - Celestial
+  - Enemy
   layers:
   - Default
   - TransparentFX
