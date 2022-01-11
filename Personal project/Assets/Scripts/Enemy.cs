@@ -65,7 +65,10 @@ public class Enemy : MonoBehaviour
             return;
         }
         //Move towards closest path
-        transform.position = Vector3.MoveTowards(transform.position, path[0] + new Vector3(0, yPathOffset, 0), moveSpeed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, path[0] + new Vector3(0, yPathOffset, 0), moveSpeed * Time.deltaTime);
+		Vector3 movedDir = new Vector3();
+		Vector3 targetmoveamount = movedDir * moveSpeed; 
+		moveAmount = Vector3.SmoothDamp(moveAmount,targetmoveamount,ref smoothMoveVelocity, 0.15f);
         if(transform.position == path[0] + new Vector3( 0, yPathOffset, 0)){
             path.RemoveAt(0);
         }
