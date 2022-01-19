@@ -7,6 +7,7 @@ TagManager:
   - Planet
   - Celestial
   - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX

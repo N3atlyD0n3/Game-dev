@@ -61,8 +61,6 @@ public class Weapon : MonoBehaviour
         
         projectile.GetComponent<Rigidbody>().velocity = muzzle.forward * projectileSpeed;
         //update ammo ui
-        if(isPlayer){
-            UserInterface.instance.UpdateAmmo(CurAmmo,maxAmmo);
-        }
+
     }
 }

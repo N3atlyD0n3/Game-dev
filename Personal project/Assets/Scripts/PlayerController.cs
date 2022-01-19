@@ -3,6 +3,9 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
 	// Set mouse sensitivity
+	[Header("Stats")]
+	public int curHP;
+	public int maxHP; 
 	public float mouseSensitivityX = 1;
 	public float mouseSensitivityY = 1;
 	// Set walk speed to 6
@@ -25,8 +28,8 @@ public class PlayerController : MonoBehaviour
 	bool grounded;
 	bool ableJump;
 	bool abletoEnter;
-	//Get celestial
-	//GameObject[] celestials;
+	//Make counter
+	public float counter;
 	// Make move amount Var
 	Vector3 moveAmount;
 	// Make movement smooth
@@ -40,6 +43,7 @@ public class PlayerController : MonoBehaviour
 	// Set rigidbody
 	Rigidbody playerrigidbody;
 	//
+	private Weapon Weapon; 
 	// Awake is simalar to start
 	void Awake()
 	{
@@ -50,6 +54,7 @@ public class PlayerController : MonoBehaviour
 		cameraTransform = Camera.main.transform;
 		// Set rigidbody = to rigidbody (more modern way)
 		playerrigidbody = GetComponent<Rigidbody>();
+		Weapon = GetComponent<Weapon>();
 	}
 	// Start the updating sequence
 	void Update()
@@ -87,6 +92,8 @@ public class PlayerController : MonoBehaviour
 			}
 			else {
 			 grounded = false;
+			 counter += 1; 
+			 timetodie();
 			}
 		//
 		//Jump raycast
@@ -127,6 +134,11 @@ public class PlayerController : MonoBehaviour
 			abletoEnter = false; 
 			print("Able to enter false");
 		}
+		if(Input.GetButton("Fire1")){
+			if(Weapon.CanShoot()){
+				Weapon.Shoot();
+			}
+		}
 	}
 	// Set fixed update to handle physics 
 	void FixedUpdate()
@@ -134,5 +146,18 @@ public class PlayerController : MonoBehaviour
 		// Apply movement to rigidbody
 		Vector3 localMove = transform.TransformDirection(moveAmount) * Time.fixedDeltaTime;
 		playerrigidbody.MovePosition(playerrigidbody.position + localMove);
+	}
+	public void TakeDamage(int damage){
+		curHP -= damage;
+		if (curHP <= 0){
+			Die();
+		}
+	}
+	void Die(){
+		GameManager.instance.LoseGame();
+	}
+	void timetodie(){
+		if (counter >= 1200)
+		TakeDamage(10);
 	}
 }
